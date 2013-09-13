@@ -1,0 +1,58 @@
+<!doctype html>
+<html ng-app>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ToDo App</title>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="todo.css">
+        <link rel="author" href="humans.txt">
+		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="bower_components/underscore/underscore-min.js"></script>
+		<script src="bower_components/amplify/lib/amplify.store.min.js"></script>
+		<script src="todo.js"></script>
+    </head>
+    <body>
+    	<div class="container">
+    		<nav class="navbar navbar-default" role="navigation">
+			  <!-- Brand and toggle get grouped for better mobile display -->
+			  <div class="navbar-header">
+			    <a class="navbar-brand" href="#">Simple Todo List</a>
+			  </div>
+			</nav>
+	        <div ng-controller="TodoCtrl">
+	        	<div class="row">
+	        		<div class="col-lg-6 col-lg-offset-3 text-left">
+	        			<h4 class="text-muted">Total Todos Remaining: {{getRemainingTodos()}} / {{getTotalTodos()}}</h4>
+				    	<ul class="list-group text-left text-muted">
+				    		<li class="list-group-item" ng-repeat="todo in todos">
+				    			<input type="checkbox" ng-click="changedTodoStatus()" ng-model = "todo.done" />
+				    			<span class="done-{{todo.done}}">{{todo.text}}</span>
+				    			<button type="button" class="pull-right close" ng-click="removeItem(todo)" aria-hidden="true">&times;</button>
+				    		</li>
+				    	</ul>
+	        		</div>
+	        	</div>
+	        	
+	        	<form class="form-horizontal">
+	        		<div class="row">
+	        			<div class="col-lg-6 col-lg-offset-3">
+	        				<input type="text" placeholder="What do you have to get done today?" class="form-control" ng-model = "formTodoText" ng-model-instant>
+	        			</div>
+	        		</div>
+					<br>
+	        		<div class="row">
+	        			<div class="col-md-6 col-md-offset-3">
+			        		<button class="btn btn-sm btn-primary pull-left" ng-click="addTodo()"><i class="glyphicon glyphicon-plus"></i> Add</button>
+			        		<button class="btn btn-sm btn-danger pull-right" ng-click="clearCompleted()"><i class="glyphicon glyphicon-trash"></i> Clear Finished Tasks</button>
+			        	</div>
+	        			</div>
+	        		</div>
+	        	</form>
+				<hr>
+	        	
+	        </div>
+        </div>
+    </body>
+</html>
